@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learn Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-header"><h3><i class="fas fa-graduation-cap"></i> E-Learn Portal</h3></div>
+        <ul>
+            <li><a href="#dashboard" class="nav-link active" data-view="dashboard-view"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="#courses" class="nav-link" data-view="courses-view"><i class="fas fa-book-open"></i> Courses</a></li>
+            <li><a href="#quizzes" class="nav-link" data-view="quizzes-view"><i class="fas fa-puzzle-piece"></i> Quizzes</a></li>
+            <li><a href="#profile" class="nav-link" data-view="profile-view"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="#feedback" class="nav-link" data-view="feedback-view"><i class="fas fa-comment-alt"></i> Feedback</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <header class="header">
+            <div id="header-title">Dashboard</div>
+            <div class="user-profile"><span>Vidya</span><img src="https://i.pravatar.cc/40?u=vidya" alt="User Avatar"></div>
+        </header>
+
+        <main class="content-area">
+            <div id="dashboard-view" class="view active-view">
+                <div class="action-buttons">
+                    <button id="new-post-btn"><i class="fas fa-bullhorn"></i> Post</button>
+                    <button id="ask-question-btn"><i class="fas fa-question-circle"></i> Ask question</button>
+                    <button id="add-event-btn"><i class="fas fa-calendar-plus"></i> Add event</button>
+                </div>
+                <div id="dashboard-feed">
+                    <div class="announcement-card"><h4><i class="fas fa-info-circle"></i> Your Guide to Using E-Learn Portal</h4><p>In addition to the product document shared, we encourage you to watch the attached video for better clarity.</p></div>
+                </div>
+            </div>
+
+            <div id="courses-view" class="view">
+                <div class="course-grid"></div>
+                <div class="fab-container hidden">
+                    <button class="fab-main" id="fab-main-btn">+</button>
+                    <div class="fab-options">
+                        <button class="fab-option" id="create-course-btn" title="Create Course"><i class="fas fa-plus"></i></button>
+                        <button class="fab-option" id="join-course-btn" title="Join Course"><i class="fas fa-user-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="course-detail-view" class="view">
+                <button class="back-button"><i class="fas fa-arrow-left"></i> Back to Courses</button>
+                <div class="course-detail-header"><h1 id="detail-course-name"></h1><p id="detail-professor-name"></p></div>
+                <div id="detail-access-code" class="access-code-display"></div>
+                <div class="course-content-grid">
+                    <div class="content-section">
+                        <div class="content-section-header"><h3><i class="fas fa-sticky-note"></i> Notes</h3><button id="add-note-btn" class="add-content-btn">+</button></div>
+                        <ul id="notes-list"></ul>
+                    </div>
+                    <div class="content-section">
+                        <div class="content-section-header">
+                            <h3><i class="fas fa-puzzle-piece"></i> Quizzes</h3>
+                            <button id="add-quiz-btn" class="add-content-btn">+</button>
+                        </div>
+                        <ul id="quizzes-list"></ul>
+                    </div>
+                    <div class="content-section">
+                        <div class="content-section-header">
+                            <h3><i class="fas fa-video"></i> Videos</h3>
+                        </div>
+                        <ul id="videos-list"></ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="take-quiz-view" class="view">
+                <button class="back-button-quiz"><i class="fas fa-arrow-left"></i> Back to Course</button>
+                <h1 id="quiz-title"></h1>
+                <div id="quiz-questions"></div>
+                <button id="submit-quiz-btn" class="submit-button">Submit Quiz</button>
+                <div id="quiz-result" class="hidden"></div>
+            </div>
+            
+            <div id="quizzes-view" class="view">
+                <h1>All Quizzes</h1>
+                <div id="all-quizzes-list"></div>
+            </div>
+
+            <div id="profile-view" class="view">
+                <div class="profile-card">
+                    <div class="profile-header"><img src="https://i.pravatar.cc/100?u=vidya" alt="User Avatar"><h2>Vidya</h2><p>Student</p></div>
+                    <div class="profile-details">
+                        <div><strong>Email:</strong> vidya@example.com</div>
+                        <div><strong>College ID:</strong> B21A2425C</div>
+                        <div><strong>Enrolled Courses:</strong> 4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-view" class="view">
+                <div class="feedback-form">
+                    <h2>Submit Feedback</h2>
+                    <p>We'd love to hear your thoughts on the E-Learn Portal.</p>
+                    <label for="feedback-rating">How would you rate your overall experience?</label>
+                    <div class="rating-group"><span>Poor</span><input type="radio" name="rating" value="1"><input type="radio" name="rating" value="2"><input type="radio" name="rating" value="3" checked><input type="radio" name="rating" value="4"><input type="radio" name="rating" value="5"><span>Excellent</span></div>
+                    <label for="feedback-comments">Comments</label>
+                    <textarea id="feedback-comments" placeholder="Tell us what you think..."rows="6" cols="84"></textarea>
+                    <button class="submit-button">Submit Feedback</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="new-post-modal" class="modal-overlay hidden"><div class="modal-content"><button class="close-button">&times;</button><h3>Create a New Post</h3><textarea id="post-textarea" placeholder="What's on your mind?"></textarea><button id="submit-post-btn" class="submit-button">Post</button></div></div>
+    <div id="ask-question-modal" class="modal-overlay hidden"><div class="modal-content"><button class="close-button">&times;</button><h3>Ask a Question</h3><input type="text" id="question-title-input" placeholder="Question Title..."><textarea id="question-textarea" placeholder="Describe your question..."></textarea><button id="submit-question-btn" class="submit-button">Ask Question</button></div></div>
+    <div id="add-event-modal" class="modal-overlay hidden"><div class="modal-content"><button class="close-button">&times;</button><h3>Add a New Event</h3><input type="text" id="event-title-input" placeholder="Event Title..."><input type="date" id="event-date-input"><button id="submit-event-btn" class="submit-button">Add Event</button></div></div>
+    <div id="add-note-modal" class="modal-overlay hidden"><div class="modal-content"><button class="close-button">&times;</button><h3>Add a New Note</h3><form id="upload-note-form"><input type="text" id="note-title-input" placeholder="Note Title (e.g., Chapter 1 PDF)" required><textarea id="note-description-input" placeholder="Add a short description..."></textarea><input type="file" id="note-file-input" required><button type="submit" class="submit-button">Upload Note</button></form></div></div>
+    <div id="create-course-modal" class="modal-overlay hidden"><div class="modal-content"><button class="close-button">&times;</button><h3>Create a New Course</h3><input type="text" id="course-name-input" placeholder="Course Name..." required><input type="text" id="professor-name-input" placeholder="Professor's Name..." required><button id="submit-create-course-btn" class="submit-button">Create Course</button></div></div>
+    <div id="join-course-modal" class="modal-overlay hidden"><div class="modal-content"><button class="close-button">&times;</button><h3>Join a Course</h3><input type="text" id="access-code-input" placeholder="Enter Access Code..." required><button id="submit-join-course-btn" class="submit-button">Join</button></div></div>
+    <div id="create-quiz-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-button">&times;</button>
+            <h3>Create a New Quiz</h3>
+            <input type="text" id="create-quiz-title-input" placeholder="Quiz Title..." required>
+            <div id="quiz-questions-builder"></div>
+            <button id="add-question-btn" class="add-question-button">Add Question</button>
+            <button id="submit-create-quiz-btn" class="submit-button">Publish Quiz</button>
+        </div>
+    </div>
+
+    <button id="chatbot-toggle-button"><i class="fas fa-robot"></i></button>
+    <div id="chat-window" class="hidden"><div class="chat-header"><h3>AI Assistant</h3><button id="chat-close-btn">&times;</button></div><div id="chat-messages" class="chat-messages"></div><div class="chat-input-area"><input type="text" id="chat-input" placeholder="Ask about your courses..."><button id="chat-send-btn"><i class="fas fa-paper-plane"></i></button></div></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

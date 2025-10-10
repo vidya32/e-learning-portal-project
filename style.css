@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display.swap');
+
+:root {
+    --primary-color: #3498db;
+    --accent-color: #8e44ad;
+    --secondary-color: #2c3e50;
+    --background-color: #1e272e;
+    --card-background: #28343e;
+    --text-light: #ecf0f1;
+    --text-dark: #cbd5e1;
+    --border-color: #3f5164;
+    --hover-color: #3a4752;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    background-color: var(--background-color);
+    color: var(--text-dark);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--secondary-color);
+    border-right: 1px solid var(--border-color);
+    min-height: 100vh;
+    flex-shrink: 0;
+}
+.sidebar-header { padding: 24px; border-bottom: 1px solid var(--border-color); color: var(--text-light); }
+.sidebar-header h3 { font-size: 1.3em; display: flex; align-items: center; gap: 10px; }
+.sidebar ul { list-style-type: none; padding-top: 10px; }
+.sidebar ul li a {
+    display: flex; align-items: center; gap: 15px; color: var(--text-dark);
+    text-decoration: none; padding: 14px 24px; margin: 4px 10px;
+    border-radius: 8px; transition: all 0.2s;
+}
+.sidebar ul li a:hover { background-color: var(--hover-color); color: var(--text-light); }
+.sidebar ul li a.active { background: var(--primary-color); color: white; font-weight: 500; }
+
+/* --- Main Layout --- */
+.main-content { flex-grow: 1; display: flex; flex-direction: column; position: relative; }
+.header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 30px; background-color: var(--card-background);
+    border-bottom: 1px solid var(--border-color); color: var(--text-light);
+}
+.content-area { padding: 30px; flex-grow: 1; overflow-y: auto; }
+.view { display: none; }
+.view.active-view { display: block; }
+
+/* --- Dashboard --- */
+.action-buttons { margin-bottom: 25px; display: flex; gap: 10px; }
+.action-buttons button { background: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 18px; cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; color: var(--text-dark); }
+.announcement-card { background-color: var(--card-background); border-radius: 12px; padding: 25px; margin-top: 20px; border: 1px solid var(--border-color); }
+.announcement-card h4 { margin-bottom: 10px; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
+.announcement-card .card-footer { margin-top: 20px; display: flex; justify-content: flex-end; }
+.announcement-card .card-footer button { background: none; border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 6px; color: var(--text-dark); }
+
+/* --- Courses View --- */
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.course-card { background-color: var(--card-background); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; border: 1px solid var(--border-color); min-height: 180px; }
+.course-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+.card-header { padding: 20px; color: #ffffff; background-color: var(--accent-color); }
+.card-body { flex-grow: 1; padding: 20px; }
+.card-footer { border-top: 1px solid var(--border-color); padding: 16px 20px; text-align: right; }
+
+/* --- Course Detail View --- */
+.back-button, .back-button-quiz { background: none; border: 1px solid var(--border-color); color: var(--text-dark); padding: 8px 15px; border-radius: 6px; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; }
+.course-detail-header { padding: 25px; background-color: var(--card-background); border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-color); }
+.access-code-display { background-color: var(--secondary-color); color: var(--primary-color); padding: 10px 15px; border-radius: 6px; margin-bottom: 20px; font-weight: bold; font-family: monospace; }
+.content-section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px; }
+.add-content-btn { background-color: var(--primary-color); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 1.5em; cursor: pointer; line-height: 30px; text-align: center; }
+.content-section { background-color: var(--card-background); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+.content-section ul { list-style-type: none; }
+.content-section li { padding: 12px 5px; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+
+/* --- Quiz View Styles --- */
+#quiz-title { color: var(--text-light); margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+.question-block { background-color: var(--card-background); border-radius: 12px; padding: 25px; margin-bottom: 20px; border: 1px solid var(--border-color); }
+.question-block p { font-size: 1.2em; font-weight: 500; margin-bottom: 15px; }
+.options-container { display: flex; flex-direction: column; gap: 10px; }
+.option-label { display: block; background-color: var(--hover-color); padding: 12px; border-radius: 8px; cursor: pointer; transition: background-color 0.2s; }
+.option-label:hover { background-color: var(--secondary-color); }
+.option-label input { margin-right: 10px; }
+#submit-quiz-btn { margin-top: 20px; width: auto; padding: 12px 25px; }
+#quiz-result { margin-top: 30px; padding: 20px; background-color: var(--secondary-color); border-radius: 12px; text-align: center; }
+#quiz-result h2 { font-size: 1.8em; color: var(--accent-color); margin-bottom: 10px; }
+#quiz-result p { font-size: 1.2em; }
+#all-quizzes-list .quiz-list-item { background-color: var(--card-background); padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--accent-color); cursor: pointer; }
+#all-quizzes-list .quiz-list-item h4 { margin-bottom: 5px; color: var(--text-light); }
+
+/* --- Create Quiz Modal --- */
+#quiz-questions-builder { margin-top: 20px; display: flex; flex-direction: column; gap: 15px; max-height: 30vh; overflow-y: auto; padding-right: 10px; }
+.quiz-question-builder-item { background-color: var(--secondary-color); padding: 15px; border-radius: 8px; }
+.quiz-question-builder-item input[type="text"] { margin-bottom: 10px; }
+.quiz-options-builder { display: flex; flex-direction: column; gap: 8px; padding-left: 20px; }
+.quiz-option-item { display: flex; align-items: center; gap: 10px; }
+.add-question-button { background-color: var(--hover-color); border: 1px dashed var(--border-color); color: var(--text-dark); padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; margin: 20px 0; }
+
+/* --- Modals --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: var(--card-background); padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; position: relative; }
+.close-button { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.8em; cursor: pointer; color: var(--text-dark); }
+.modal-content textarea, .modal-content input { width: 100%; padding: 12px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border-color); background-color: #2c3e50; color: var(--text-light); }
+.modal-content textarea { height: 150px; }
+.submit-button { width: 100%; padding: 12px; border: none; border-radius: 8px; color: white; cursor: pointer; background: var(--primary-color); }
+.hidden { display: none !important; }
+
+/* --- Chatbot --- */
+#chatbot-toggle-button { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; font-size: 1.6em; border-radius: 50%; border: none; cursor: pointer; background: var(--primary-color); color: white; z-index: 1001; }
+#chat-window { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background-color: var(--card-background); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; z-index: 1000; }
+.chat-header { background-color: var(--secondary-color); color: var(--text-light); padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+#chat-close-btn { background: none; border: none; font-size: 1.5em; color: var(--text-dark); cursor: pointer; }
+.chat-messages { flex-grow: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.chat-message { padding: 10px 15px; border-radius: 18px; max-width: 80%; }
+.user-message { background-color: var(--primary-color); color: white; align-self: flex-end; }
+.ai-message { background-color: var(--hover-color); color: var(--text-dark); align-self: flex-start; }
+.chat-input-area { display: flex; border-top: 1px solid var(--border-color); }
+#chat-input { flex-grow: 1; border: none; background-color: var(--card-background); color: var(--text-light); padding: 15px; outline: none; }
+#chat-send-btn { background-color: var(--primary-color); border: none; color: white; padding: 0 20px; cursor: pointer; }
+
+/* --- Reply Box --- */
+.reply-box { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); }
+.reply-box textarea { width: 100%; height: 70px; padding: 10px; border-radius: 6px; border: 1px solid var(--border-color); background-color: #2c3e50; color: var(--text-light); margin-bottom: 10px; }
+.reply-box button { background-color: var(--primary-color); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; }
+.reply-display { margin-top: 15px; padding: 10px; background-color: var(--secondary-color); border-radius: 6px; border-left: 3px solid var(--primary-color); }
+
+/* --- Floating Action Button for Courses --- */
+.fab-container { position: fixed; bottom: 30px; right: 30px; z-index: 1002; }
+.fab-main { width: 60px; height: 60px; border-radius: 50%; background-color: var(--accent-color); color: white; border: none; font-size: 2em; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
+.fab-container.active .fab-main { transform: rotate(45deg); }
+.fab-options { position: absolute; bottom: 70px; right: 5px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+.fab-option { width: 50px; height: 50px; border-radius: 50%; background-color: var(--card-background); color: var(--text-light); border: 1px solid var(--border-color); font-size: 1.2em; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: scale(0); transition: transform 0.3s ease; opacity: 0; pointer-events: none; }
+.fab-container.active .fab-option { transform: scale(1); opacity: 1; pointer-events: all; }
+
+/* --- Profile and Feedback Page Styling --- */
+.profile-card { max-width: 500px; margin: 0 auto; background-color: var(--card-background); border-radius: 12px; border: 1px solid var(--border-color); text-align: center; overflow: hidden; }
+.profile-header { background: var(--secondary-color); padding: 30px; }
+.profile-header img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--primary-color); margin-bottom: 15px; }
+.profile-header h2 { color: var(--text-light); font-size: 1.8em; }
+.profile-header p { color: var(--text-dark); }
+.profile-details { padding: 30px; display: flex; flex-direction: column; gap: 15px; text-align: left; }
+.profile-details div { font-size: 1.1em; }
+.feedback-form { max-width: 700px; margin: 0 auto; background-color: var(--card-background); border-radius: 12px; border: 1px solid var(--border-color); padding: 30px; }
+.feedback-form h2 { text-align: center; color: var(--text-light); margin-bottom: 10px; }
+.feedback-form p { text-align: center; margin-bottom: 30px; }
+.feedback-form label { display: block; margin-bottom: 10px; font-weight: 500; }
+.feedback-form textarea { height: 150px; }
+.rating-group { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 30px; }
+/* --- Profile and Feedback Page Styling --- */
+.profile-card, .feedback-form {
+    max-width: 700px;
+    margin: 20px auto; /* Centers the card horizontally */
+    background-color: var(--card-background);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 30px;
+}
+
+.profile-card {
+    text-align: center;
+    overflow: hidden;
+}
+
+.profile-header {
+    padding-bottom: 20px;
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.profile-header h2 {
+    color: var(--text-light);
+    font-size: 1.8em;
+}
+
+.profile-header p {
+    color: var(--text-dark);
+}
+
+.profile-details {
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.profile-details div {
+    font-size: 1.1em;
+}
+
+.feedback-form h2 {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.feedback-form p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.feedback-form label {
+    display: block;
+    margin: 20px 0 10px 0;
+    font-weight: 500;
+    text-align: left;
+}
+
+.rating-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}

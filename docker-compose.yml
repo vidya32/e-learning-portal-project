@@ -1,0 +1,16 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "7071:80"
+    environment:
+      MyCosmosDBConnectionString: ${MyCosmosDBConnectionString}
+      GeminiApiKey: ${GeminiApiKey}
+      Azure_Storage_Connection_String: ${Azure_Storage_Connection_String}
+
+  frontend:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
