@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 // PASTE YOUR FULL GEMINI API KEY INSIDE THE QUOTES BELOW
-const API_KEY = "AIzaSyBB4rbqmqqkh4WK2WXOgAzcIV-4usuOUcg";
+const API_KEY = "paste your key";
 
 async function listModels() {
     const url = 'https://generativelanguage.googleapis.com/v1/models?key=' + API_KEY;

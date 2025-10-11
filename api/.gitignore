@@ -99,3 +99,17 @@ __queuestorage__
 __azurite_db*__.json
 
 .env
+# Terraform generated files
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+crash.log
+override.tf
+override.tf.json
+*._override.tf
+*.auto.tfvars
+
+
+# Also good to ignore any node modules
+node_modules/
