@@ -20,7 +20,7 @@ jobs:
         uses: azure/static-web-apps-deploy@v1
         with:
           # The key to deployment: uses the secure token you just created
-          azure_static_web_app_api_token: ${{ secrets.AZURE_STATIC_WEB_APP_DEPLOYMENT_TOKEN }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APP_DEPLOYMENT_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used by SWA for PRs
           action: 'upload'
           
