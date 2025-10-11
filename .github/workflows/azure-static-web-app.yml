@@ -27,4 +27,6 @@ jobs:
           # Configuration paths: Adjust if your project structure is different
           app_location: '/'        # Location of your frontend code (e.g., where index.html is)
           api_location: 'api'      # Location of your serverless backend code
-          output_location: ''      # Leave empty if your frontend doesn't need a build step
+          output_location: '' 
+          skip_app_build: true
+          # Leave empty if your frontend doesn't need a build step
