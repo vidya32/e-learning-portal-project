@@ -1,0 +1,30 @@
+# .github/workflows/azure-static-web-app.yml
+
+name: Deploy E-Learning Portal to Azure SWA
+
+on:
+  push:
+    branches:
+      - main # Pipeline runs automatically on every push to 'main'
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Build And Deploy
+        id: deploy
+        uses: azure/static-web-apps-deploy@v1
+        with:
+          # The key to deployment: uses the secure token you just created
+          azure_static_web_app_api_token: ${{ secrets.AZURE_STATIC_WEB_APP_DEPLOYMENT_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used by SWA for PRs
+          action: 'upload'
+          
+          # Configuration paths: Adjust if your project structure is different
+          app_location: '/'        # Location of your frontend code (e.g., where index.html is)
+          api_location: 'api'      # Location of your serverless backend code
+          output_location: ''      # Leave empty if your frontend doesn't need a build step
