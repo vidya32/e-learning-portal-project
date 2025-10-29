@@ -23,7 +23,9 @@ app.http('uploadFile', {
                     
                     const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
                     const containerClient = blobServiceClient.getContainerClient(containerName);
-                    const blobName = `${new Date().getTime()}-${file.originalFilename}`;
+                    // Sanitize the original filename to remove potentially unsafe characters
+                    const safeFilename = file.originalFilename.replace(/[^a-zA-Z0-9._-]/g, '_'); 
+                    const blobName = `${new Date().getTime()}-${safeFilename}`;
                     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
                     await blockBlobClient.uploadStream(fs.createReadStream(file.path));
